@@ -1,0 +1,3 @@
+D:/IFTM/Pesquisa_e_ordenacao/2024_2/SPOJ/Arvore_b/3_trabalho/cmake-build-debug/CMakeFiles/3_trabalho.dir
+D:/IFTM/Pesquisa_e_ordenacao/2024_2/SPOJ/Arvore_b/3_trabalho/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/IFTM/Pesquisa_e_ordenacao/2024_2/SPOJ/Arvore_b/3_trabalho/cmake-build-debug/CMakeFiles/rebuild_cache.dir
