@@ -426,6 +426,22 @@ void busca (Pagina *raiz,int num) {
     Pagina *folha = encontra_folha(raiz,num);
     Nod *aux = folha->listaChaves->fim;
 
+    if(getChave(aux) == num && aux->prox == NULL) {
+        printf("-1");
+    }
+    else {
+        aux = folha->listaChaves->ini;
+        while(aux != NULL && getChave(aux) != num) {
+            aux = aux->prox;
+        }
+        printf("%i",getChave(aux->prox));
+    }
+}
+//fiz junto com a Isa e Erica
+/*void busca (Pagina *raiz,int num) {
+    Pagina *folha = encontra_folha(raiz,num);
+    Nod *aux = folha->listaChaves->fim;
+
     if(getChave(aux) == num) {
         Pagina *pai = folha->pai;
         Nod *prox_aux = pai->listaChaves->ini->prox;
@@ -440,6 +456,6 @@ void busca (Pagina *raiz,int num) {
         }
         printf("%i ",getChave(aux_2->prox));
     }
-}
+}*/
 
 
