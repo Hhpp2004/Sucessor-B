@@ -424,17 +424,30 @@ Pagina *cria_nova_raiz(Pagina *folha, Pagina *nova_pagina, Chave *ch)
 
 void busca (Pagina *raiz,int num) {
     Pagina *folha = encontra_folha(raiz,num);
-    Nod *aux = folha->listaChaves->fim;
+    Pagina *pai = folha->pai;
+    Nod *aux = pai->listaChaves->fim;
 
-    if(getChave(aux) == num && aux->prox == NULL) {
-        printf("-1");
+    if(getChave(aux) == num && getFilho(aux) == NULL && aux->prox == NULL) {
+        printf("-1\n");
     }
     else {
-        aux = folha->listaChaves->ini;
-        while(aux != NULL && getChave(aux) != num) {
-            aux = aux->prox;
+        Nod *aux_2 = pai->listaChaves->ini;
+        while(aux_2 != NULL && getChave(aux_2) == num) {
+            aux_2 = aux_2->prox;
         }
-        printf("%i",getChave(aux->prox));
+        
+        if(aux_2->prox->prox == NULL)
+        {
+            Nod *aux_dir = pai->direita->listaChaves->ini;
+            int num = getChave(aux_dir);
+            printf("%i\n",num);
+        }
+        else if(aux_2->prox != NULL)
+        {
+            Nod *aux_filho = getFilho(aux->prox->prox)->listaChaves->ini;
+            int num = getChave(aux_filho);
+            printf("%i\n",num);
+        }
     }
 }
 //fiz junto com a Isa e Erica
