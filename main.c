@@ -143,7 +143,7 @@ Listad *divide_listad(Listad *L, int qtde_elementos_primeira_lista)
     while (i < qtde_elementos_primeira_lista)
     {
         i++;
-        aux = aux->prox;
+        aux = aux->prox;        
     }
     L2->ini = aux;
     L2->fim = L->fim;
@@ -433,7 +433,10 @@ void busca (Pagina *raiz,int num) {
         Nod *aux_2 = folha->listaChaves->ini;
         while(aux_2 != NULL && getChave(aux_2) != num) {
             aux_2 = aux_2->prox;
-            filho = getFilho(aux_2);
+            if(aux_2 != NULL)
+            {
+                filho = getFilho(aux_2);
+            }
         }        
         if(filho != NULL)
         {
@@ -453,7 +456,8 @@ void busca (Pagina *raiz,int num) {
             }
             else
             {
-                printf("%i",getChave(aux_pai->prox));
+                //Pagina *num = getFilho(aux_pai->prox);
+                printf("%i",getChave(getFilho(aux_pai->prox)->listaChaves->ini));
             }
         }
     }
