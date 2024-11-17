@@ -332,8 +332,7 @@ Pagina *divide(Pagina *pagina_dividir)
     // a função ceil arrenda para cima (biblioteca math.h)
     int qtde_pagina_dividir = ceil(pagina_dividir->qtdeChaves / 2.0);
 
-    Listad *nova_lista = divide_listad(pagina_dividir->listaChaves,
-                                       qtde_pagina_dividir);
+    Listad *nova_lista = divide_listad(pagina_dividir->listaChaves,qtde_pagina_dividir);
     nova_pagina->listaChaves = nova_lista;
     nova_pagina->qtdeChaves =
         pagina_dividir->qtdeChaves - qtde_pagina_dividir;
@@ -423,30 +422,39 @@ Pagina *cria_nova_raiz(Pagina *folha, Pagina *nova_pagina, Chave *ch)
 }
 
 void busca (Pagina *raiz,int num) {
-    Pagina *folha = encontra_folha(raiz,num);
-    Pagina *pai = folha->pai;
-    Nod *aux = pai->listaChaves->fim;
+    Pagina *folha = encontra_folha(raiz,num);    
+    Nod *aux = folha->listaChaves->fim;
 
-    if(getChave(aux) == num && getFilho(aux) == NULL && aux->prox == NULL) {
+    if(getChave(aux) == num && getFilho(aux) == NULL) {
         printf("-1\n");
     }
     else {
-        Nod *aux_2 = pai->listaChaves->ini;
-        while(aux_2 != NULL && getChave(aux_2) == num) {
+        Pagina *filho = NULL;
+        Nod *aux_2 = folha->listaChaves->ini;
+        while(aux_2 != NULL && getChave(aux_2) != num) {
             aux_2 = aux_2->prox;
-        }
-        
-        if(aux_2->prox->prox == NULL)
+            filho = getFilho(aux_2);
+        }        
+        if(filho != NULL)
         {
-            Nod *aux_dir = pai->direita->listaChaves->ini;
-            int num = getChave(aux_dir);
-            printf("%i\n",num);
+            printf("%i\n",getChave(filho->listaChaves->ini));
         }
-        else if(aux_2->prox != NULL)
+        else 
         {
-            Nod *aux_filho = getFilho(aux->prox->prox)->listaChaves->ini;
-            int num = getChave(aux_filho);
-            printf("%i\n",num);
+            Pagina *pai = folha->pai;
+            Nod *aux_pai = pai->listaChaves->ini;
+            while(aux_pai != NULL && getChave(aux_pai) != num)
+            {
+                aux_pai = aux_pai->prox;
+            }
+            if(aux_pai->prox == NULL)
+            {
+                printf("%i\n",getChave(pai->direita->listaChaves->ini));
+            }
+            else
+            {
+                printf("%i",getChave(aux_pai->prox));
+            }
         }
     }
 }
